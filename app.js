@@ -4,12 +4,16 @@
  */
 
 var express = require('express');
+var generator = require('./generator');
 var routes = require('./routes');
 var jobs = require('./routes/jobs');
 var http = require('http');
 var path = require('path');
 
 var app = express();
+
+// Generate fake job data
+generator.generate();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
