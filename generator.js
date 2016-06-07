@@ -3,12 +3,19 @@
  */
 
 const faker = require('faker');
+const _ = require('lodash');
 
 let jobs = [];
 const numJobs = Math.floor(Math.random() * (800 - 200) + 200);
 
 const getJobs = () => {
   return jobs;
+};
+
+const findJob = (slug) => {
+  return _.find(jobs, {
+    'slug': slug
+  });
 };
 
 const generate = () => {
@@ -36,5 +43,6 @@ const generate = () => {
 
 module.exports = {
   generate,
-  getJobs
+  getJobs,
+  findJob
 }
