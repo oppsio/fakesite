@@ -33,7 +33,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// app.get('/', routes.index);
+app.get('/', routes.index);
+app.get('/job/:slug', job.item);
 app.get('/api/jobs', jobs.list);
 app.get('/api/job/:slug', job.find);
 

@@ -1,8 +1,5 @@
 var app = angular.module('myApp', []);
 
-// alternate - https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination
-// alternate - http://fdietz.github.io/recipes-with-angular-js/common-user-interface-patterns/paginating-through-client-side-data.html
-
 app.controller('MyCtrl', ['$scope', '$filter', '$http', function($scope, $filter, $http) {
   $scope.currentPage = 0;
   $scope.pageSize = 10;
@@ -19,13 +16,23 @@ app.controller('MyCtrl', ['$scope', '$filter', '$http', function($scope, $filter
     return Math.ceil($scope.getData().length / $scope.pageSize);
   }
 
-  $http.get('/api/jobs').then(function(response) {
-    response.data.forEach(function(entry) {
-      $scope.data.push(entry);
-    });
-  });
+  $scope.prevPage = function() {
+    $scope.currentPage = $scope.currentPage - 1
+  }
 
-  for (var i = 0; i < 65; i++) {}
+  $scope.nextPage = function() {
+    $scope.currentPage = $scope.currentPage + 1
+  }
+
+  var delay = Math.floor(Math.random() * (3000 - 1000) + 1000);
+  setTimeout(function() {
+    $http.get('/api/jobs').then(function(response) {
+      response.data.forEach(function(entry) {
+        $scope.data.push(entry);
+      });
+    });
+  }, delay);
+
 }]);
 
 //We already have a limitTo filter built-in to angular,

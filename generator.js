@@ -2,8 +2,8 @@
  * Generates fake job data
  */
 
-const faker = require('faker');
-const _ = require('lodash');
+var faker = require('faker');
+var _ = require('lodash');
 
 let jobs = [];
 const numJobs = Math.floor(Math.random() * (800 - 200) + 200);
